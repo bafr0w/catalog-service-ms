@@ -6,6 +6,7 @@ A cloud native spring boot microservice application. The catalog service of the 
 
 - JDK 21
 - Spring boot 3.2.5
+- Gradle
 - Docker
 - Kubernetes
 
