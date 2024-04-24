@@ -11,6 +11,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String getGreeting() {
-        return "Welcome to the Catalog service.";
+        return "Welcome to the Gye Nyame Book Catalog.";
     }
 }
