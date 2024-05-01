@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @Author BaFr0w
  */
 @RestController
-@RequestMapping("books")
+@RequestMapping("api/v1/books")
 public class BookController {
     private final BookService bookService;
 
@@ -23,7 +23,7 @@ public class BookController {
         return bookService.viewBookList();
     }
 
-    @GetMapping("{isbn}")
+    @GetMapping("/{isbn}")
     public Book getByIsbn(@PathVariable String isbn) {
         return bookService.viewBookDetails(isbn);
     }
@@ -40,7 +40,7 @@ public class BookController {
         bookService.removeBookFromCatalog(isbn);
     }
 
-    @PutMapping("{isbn}")
+    @PutMapping("/{isbn}")
     public Book put(@PathVariable String isbn, @Valid @RequestBody Book book) {
         return bookService.editBookDetails(isbn, book);
     }
