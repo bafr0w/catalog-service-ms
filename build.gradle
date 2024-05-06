@@ -15,13 +15,54 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    set('springCloudVersion', "2023.0.1")
+    set('testcontainersVersion', "1.19.7")
+}
+// Add configurations and profiles
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 dependencies {
+    // Spring boot web framework
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Spring boot Data Validation @Valid
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // Spring cloud Config Client
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    // Spring cloud Config client Retry library
+    implementation 'org.springframework.retry:spring-retry'
+    // Spring boot Actuator for Observability and refreshing Config parameters
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    // Spring Database connectivity libraries
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    runtimeOnly 'org.postgresql:postgresql'
+    // Add Database migration with flyway
+    implementation 'org.flywaydb:flyway-core'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // Add testContainers for testing PostgreSql
+    testImplementation 'org.testcontainers:postgresql'
+    // Spring Reactive framework for MockMVC testing
     testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+    }
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// Define Active profile on application run
+bootRun {
+    systemProperty 'spring.profiles.active', 'testdata'
 }
