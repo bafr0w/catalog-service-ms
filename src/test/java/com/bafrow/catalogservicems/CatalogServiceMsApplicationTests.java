@@ -24,7 +24,7 @@ class CatalogServiceMsApplicationTests {
 
     @Test
     void whenPostRequestThenBookCreated() {
-        var expectedBook = Book.of("1231231231", "Title", "Author", 9.90);
+        var expectedBook = Book.of("1231231231", "Title", "Author", 9.90, "Gye Nyame");
         webTestClient
                 .post() // sends POST request
                 .uri("api/v1/books") // sends request to /books endpoint
