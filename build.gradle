@@ -66,6 +66,7 @@ tasks.named('test') {
 bootRun {
     systemProperty 'spring.profiles.active', 'testdata'
 }
+// Cloud native BuildPacks config and ability to publish container image to registry of choice
 bootBuildImage {
     imageName = "${project.name}"
     environment = ["BP_JVM_VERSION" : "21.*"]

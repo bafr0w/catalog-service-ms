@@ -1,0 +1,22 @@
+
+name: catalog-microservice
+services:
+  catalog-app:
+    depends_on:
+      - catalog-postgres
+    image: "catalog-service-ms"
+    container_name: "catalog-app-1"
+    ports:
+      - 8080:8080
+      - 8001:8001
+    environment:
+      - BPL_JVM_THREAD_COUNT=50
+      - BPL_DEBUG_ENABLED=true
+      - BPL_DEBUG_PORT=8001
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://catalog-postgres:5432/gyenyamedb_catalog
+      - SPRING_PROFILES_ACTIVE=testdata
+
+  catalog-postgres:
+    extends:
+      file: ./postgresql.yml
+      service: catalog-postgres

@@ -1,10 +1,10 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-name: catalog-postgres
+name: catalog-microservice
 services:
-  postgresql:
+  catalog-postgres:
     image: postgres:15.3
     # volumes:
-    #   - ~/volumes/jhipster/aeroCommerce/postgresql/:/var/lib/postgresql/data/
+    #   - ~/volumes/catalog-service/postgresql/:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=s3cr3t

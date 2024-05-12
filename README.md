@@ -22,9 +22,9 @@ A cloud native spring boot microservice application. The catalog service of the 
 ```
 ./gradlew bootBuildImage
 ```
-### To run with Docker
+### To run with Docker Compose
 ```
-docker run --rm --name catalog-service-ms -p 8080:8080 catalog-service-ms:0.0.1-SNAPSHOT
+ docker compose -f src/main/docker/services.yml up -d  
 ```
 ### To run with Kubernetes
 1. Start minikube
